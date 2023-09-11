@@ -43,8 +43,10 @@ class _SearchedCityState extends State<SearchedCity> {
 
   void updateCityUI(dynamic searchedCity) {
     setState(() {
+      print(searchedCity);
       if (searchedCity == null) {
 
+        cityHeading = 'ERROR';
         temperature = 0;
         conditionText = 'Unclear';
         windSpeed = 0;
