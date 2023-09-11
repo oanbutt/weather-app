@@ -23,9 +23,24 @@ class _SearchPageState extends State<SearchPage> {
 
 
   Future<dynamic> getCityData ()async{
-    CityNetworking network = CityNetworking(cityName: searchedCity);
-    cityData = await network.getCityData();
-    return cityData;
+    try{
+      CityNetworking network = CityNetworking(cityName: searchedCity);
+      cityData = await network.getCityData();
+      return cityData;
+    }catch (e){
+      AlertDialog(
+        title: Text('ERROR'),
+        content: Text('invalid value entered'),
+        // actions: [
+        //   GestureDetector(
+        //     onTap: (){
+        //       Navigator.push(context, MaterialPageRoute(builder: (context) => SearchPage()));
+        //     },
+        //     child: Text('ok'),
+        //   )
+        // ],
+      );
+    }
   }
 
   Widget build(BuildContext context) {
@@ -61,8 +76,26 @@ class _SearchPageState extends State<SearchPage> {
                         suffixIcon: GestureDetector(
                           onTap: () async{
                             weatherUpdate = await getCityData();
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => SearchedCity(searchedCity: weatherUpdate, cityName: searchedCity)));
-                            },
+                           if(weatherUpdate!=null) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SearchedCity(
+                                          searchedCity: weatherUpdate,
+                                          cityName: searchedCity)));
+                            }else {
+                              final snackBar = SnackBar(
+                                content: Text('Invalid Input'),
+
+                                action: SnackBarAction(
+                                  label: 'Undo',
+                                  onPressed: ()=>Navigator.pop(context),
+                                )
+                              );
+                              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+                           }
+                          },
                           child: Icon(
                             Icons.search,
                             color: Colors.white,
