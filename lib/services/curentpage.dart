@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'package:spring/spring.dart';
 import 'package:code/services/conditions.dart';
 import 'package:code/services/searchpage.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +27,7 @@ class _CurrentPageState extends State<CurrentPage> {
   late int humidity;
   late int pressure;
   late dynamic time;
+  late Image imageSetter;
    DateTime today = DateTime.now();
 
   void initState() {
@@ -54,6 +55,7 @@ class _CurrentPageState extends State<CurrentPage> {
       windSpeed = wind.toInt();
       humidity = weatherDetail['main']['humidity'];
       pressure = weatherDetail['main']['pressure'];
+      imageSetter = weatherCondition.getImage(ct);
 
 
 
@@ -119,10 +121,12 @@ class _CurrentPageState extends State<CurrentPage> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(top: 12, bottom: 14),
-                          child: Image(
-                            image: AssetImage('images/sundome2.png'),
-                            height: 190,
-                            width: 220,
+                          child:
+                          Spring.slide(
+                              slideType: SlideType.slide_in_left,
+                              withFade: true,
+                              animDuration: Duration(seconds: 2),
+                              child: imageSetter,
                           ),
                         ),
                         Row(

@@ -11,6 +11,7 @@ class Networking {
   Future getWeatherData () async{
 
     http.Response response = await http.get(Uri.parse(url));
+    print(response.body);
     if(response.statusCode == 200){
       var data = response.body;
       var decodedData = jsonDecode(data);
