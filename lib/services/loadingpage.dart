@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 
-const apiKey = 'ffe8dff7dd083e29faec71102085bc6d';
+const apiKey = '8139f107a51ccf8e5d55b7e4056fb94d';
 const baseUrl = 'https://api.openweathermap.org/data/2.5/weather';
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({super.key});
@@ -34,9 +34,22 @@ void initState() {
     
     dynamic weather = await network.getWeatherData();
 
-    Navigator.push(context, MaterialPageRoute(builder: (context) =>
-      CurrentPage(currentWeather: weather),
-    ));
+    if(weather != null){
+      Navigator.push(context, MaterialPageRoute(builder: (context) =>
+          CurrentPage(currentWeather: weather),
+      ));
+    }else {
+      final snackBar = SnackBar(
+          content: Text('An error has occured'),
+
+          action: SnackBarAction(
+
+            label: 'Undo',
+            onPressed: ()=>Navigator.pop(context),
+          )
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
 
     
     

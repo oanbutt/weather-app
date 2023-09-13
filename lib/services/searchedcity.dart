@@ -1,8 +1,7 @@
-import 'package:code/services/citynetwork.dart';
+import 'package:spring/spring.dart';
 import 'package:code/services/conditions.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 
 import '../frostedglass.dart';
@@ -32,6 +31,7 @@ class _SearchedCityState extends State<SearchedCity> {
   late int pressure;
   late dynamic time;
   late String cityHeading;
+  late Image imageSetter;
 
 
   void initState() {
@@ -62,6 +62,7 @@ class _SearchedCityState extends State<SearchedCity> {
       windSpeed = wind.toInt();
       humidity = searchedCity['main']['humidity'];
       pressure = searchedCity['main']['pressure'];
+      imageSetter = getCondition.getImage(ct);
 
     });
   }
@@ -106,11 +107,11 @@ class _SearchedCityState extends State<SearchedCity> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(top: 12, bottom: 14),
-                          child: Image(
-                            image: AssetImage('images/sundome2.png'),
-                            height: 190,
-                            width: 220,
-                          ),
+                          child: Spring.slide(
+                              slideType: SlideType.slide_in_left,
+                              withFade: true,
+                              animDuration: Duration(seconds: 2),
+                              child: imageSetter),
                         ),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,7 +1,6 @@
 import 'package:code/services/citynetwork.dart';
 import 'package:code/services/searchedcity.dart';
 import 'package:flutter/material.dart';
-import 'package:input_history_text_field/input_history_text_field.dart';
 import '../constants.dart';
 import '../frostedglass.dart';
 
@@ -60,14 +59,7 @@ class _SearchPageState extends State<SearchPage> {
                   theHeight: double.infinity,
                   theChild: Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: InputHistoryTextField(
-                      historyKey: "01",
-                      listStyle: ListStyle.Badge,
-                      showHistoryIcon: true,
-                      showDeleteIcon: true,
-                      enableHistory: true,
-                      showHistoryList: true,
-                      limit: 15,
+                    child: TextField(
                       style: TextStyle(
                         color: Colors.green,
                       ),
@@ -88,6 +80,7 @@ class _SearchPageState extends State<SearchPage> {
                                 content: Text('Invalid Input'),
 
                                 action: SnackBarAction(
+
                                   label: 'Undo',
                                   onPressed: ()=>Navigator.pop(context),
                                 )
