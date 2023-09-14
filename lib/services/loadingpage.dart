@@ -66,7 +66,7 @@ void initState() {
       body:  Container(
         decoration: BoxDecoration(
         image: DecorationImage(
-        image:AssetImage('images/leafy.jpg'),
+        image:AssetImage('images/beige.jpg'),
     fit: BoxFit.cover,
     )
     ),
