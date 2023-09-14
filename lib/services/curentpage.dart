@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../frostedglass.dart';
 import '../frostedglass2.dart';
 import  'package:intl/intl.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class CurrentPage extends StatefulWidget {
   CurrentPage({required this.currentWeather});
@@ -16,7 +17,9 @@ class CurrentPage extends StatefulWidget {
   State<CurrentPage> createState() => _CurrentPageState();
 }
 
-class _CurrentPageState extends State<CurrentPage> {
+class _CurrentPageState extends State<CurrentPage>{
+
+
   @override
   Conditions weatherCondition = Conditions();
 
@@ -68,7 +71,7 @@ class _CurrentPageState extends State<CurrentPage> {
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-          image: AssetImage('images/leafy.jpg'),
+          image: AssetImage('images/beige.jpg'),
           fit: BoxFit.cover,
         )),
         alignment: Alignment.center,
@@ -93,12 +96,23 @@ class _CurrentPageState extends State<CurrentPage> {
                         },
                           child: Icon(
                         Icons.near_me,
+                        shadows: [Shadow(blurRadius: 10,offset: Offset(2, 2))],
                         size: 40,
-                        color: Color(0xff74AC43),
+                        color: Color(0xffF5F2DA),
                       )),
-                      Text(
-                        'CURRENT',
-                        style: TextStyle(fontSize: 22, color: Colors.green),
+                      AnimatedTextKit(
+                        animatedTexts: [
+                          TypewriterAnimatedText(
+                            'CURRENT',
+                            textStyle: const TextStyle(
+                              fontSize: 22.0,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xffF5F2DA),
+                            ),
+                            speed: const Duration(milliseconds: 200),
+                          ),
+                        ],
+                        totalRepeatCount: 1,
                       ),
                       GestureDetector(
                         onTap: (){
@@ -108,8 +122,9 @@ class _CurrentPageState extends State<CurrentPage> {
                         },
                         child: Icon(
                           Icons.search,
+                          shadows: [Shadow(blurRadius: 10,offset: Offset(2, 2))],
                           size: 40,
-                          color: Color(0xff74AC43),
+                          color: Color(0xffF5F2DA),
                         ),
                       ),
                     ],
@@ -136,10 +151,10 @@ class _CurrentPageState extends State<CurrentPage> {
                             Text(
                               '$temperature',
                               style: TextStyle(
-                                  fontSize: 50, color: Color(0xff74AC43)),
+                                  fontSize: 50, color: Color(0xffF5F2DA)),
                             ),
                             Icon(Icons.circle_outlined,
-                                size: 12, color: Color(0xff74AC43)),
+                                size: 12, color: Color(0xffF5F2DA)),
                           ],
                         ),
                         Padding(
@@ -149,7 +164,7 @@ class _CurrentPageState extends State<CurrentPage> {
                             style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w300,
-                                color: Color(0xff74AC43)),
+                                color: Color(0xffF5F2DA)),
                           ),
                         )
                       ],
@@ -163,17 +178,17 @@ class _CurrentPageState extends State<CurrentPage> {
                         Text(
                           '${DateFormat('EEEE').format(today)}, ',
                           style:
-                              TextStyle(fontSize: 18, color: Color(0xff74AC43)),
+                              TextStyle(fontSize: 18, color: Color(0xffF5F2DA)),
                         ),
                         Text(
                           '${DateFormat('dd').format(today)} ',
                           style: TextStyle(
-                              fontSize: 18, color: Color(0xff74AC43)),
+                              fontSize: 18, color: Color(0xffF5F2DA)),
                         ),
                         Text(
                           '${DateFormat('MMMM').format(today)}',
                           style: TextStyle(
-                              fontSize: 18, color: Color(0xff74AC43)),
+                              fontSize: 18, color: Color(0xffF5F2DA)),
                         )
                       ],
                     ),
@@ -201,14 +216,14 @@ class _CurrentPageState extends State<CurrentPage> {
                                 child: Text(
                                   '$windSpeed',
                                   style: TextStyle(
-                                      fontSize: 18, color: Color(0xff74AC43)),
+                                      fontSize: 18, color: Color(0xffF5F2DA)),
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 21),
                                 child: Text(
                                   'Km/h',
-                                  style: TextStyle(color: Color(0xff74AC43)),
+                                  style: TextStyle(color: Color(0xffF5F2DA)),
                                 ),
                               )
                             ],
@@ -232,7 +247,7 @@ class _CurrentPageState extends State<CurrentPage> {
                                 child: Text(
                                   '$humidity',
                                   style: TextStyle(
-                                      fontSize: 18, color: Color(0xff74AC43)),
+                                      fontSize: 18, color: Color(0xffF5F2DA)),
                                 ),
                               ),
                               Padding(
@@ -240,7 +255,7 @@ class _CurrentPageState extends State<CurrentPage> {
                                 child: Text(
                                   '%',
                                   style: TextStyle(
-                                      color: Color(0xff74AC43), fontSize: 16),
+                                      color: Color(0xffF5F2DA), fontSize: 16),
                                 ),
                               )
                             ],
@@ -264,7 +279,7 @@ class _CurrentPageState extends State<CurrentPage> {
                                 child: Text(
                                   '$pressure',
                                   style: TextStyle(
-                                      fontSize: 16, color: Color(0xff74AC43)),
+                                      fontSize: 16, color: Color(0xffF5F2DA)),
                                 ),
                               ),
                               Padding(
@@ -272,7 +287,7 @@ class _CurrentPageState extends State<CurrentPage> {
                                 child: Text(
                                   'mmHg',
                                   style: TextStyle(
-                                      color: Color(0xff74AC43), fontSize: 12),
+                                      color: Color(0xffF5F2DA), fontSize: 12),
                                 ),
                               )
                             ],

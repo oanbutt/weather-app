@@ -3,7 +3,7 @@ import 'package:code/services/conditions.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
-
+import 'package:animated_text_kit/animated_text_kit.dart';
 import '../frostedglass.dart';
 import '../frostedglass2.dart';
 
@@ -19,6 +19,7 @@ class SearchedCity extends StatefulWidget {
 }
 
 class _SearchedCityState extends State<SearchedCity> {
+
   @override
   DateTime today = DateTime.now();
   Conditions getCondition = Conditions();
@@ -32,6 +33,7 @@ class _SearchedCityState extends State<SearchedCity> {
   late dynamic time;
   late String cityHeading;
   late Image imageSetter;
+  bool isPressed = false;
 
 
   void initState() {
@@ -76,7 +78,7 @@ class _SearchedCityState extends State<SearchedCity> {
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('images/leafy.jpg'),
+              image: AssetImage('images/beige.jpg'),
               fit: BoxFit.cover,
             )),
         alignment: Alignment.center,
@@ -91,11 +93,31 @@ class _SearchedCityState extends State<SearchedCity> {
               child: Column(
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        '${cityHeading.toUpperCase()}',
-                        style: TextStyle(fontSize: 22, color: Colors.green),
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.pop(context);
+                        },
+                        child: Icon(Icons.arrow_back_rounded,
+                          shadows: [Shadow(blurRadius: 10,offset: Offset(2, 2))],
+                          size: 40,
+                          color: Color(0xffF5F2DA),
+                        ),
+                      ),
+                      AnimatedTextKit(
+                        animatedTexts: [
+                          TypewriterAnimatedText(
+                            '${cityHeading.toUpperCase()}',
+                            textStyle: const TextStyle(
+                                fontSize: 22.0,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xffF5F2DA)
+                            ),
+                            speed: const Duration(milliseconds: 200),
+                          ),
+                        ],
+                        totalRepeatCount: 1,
                       ),
 
                     ],
@@ -120,10 +142,10 @@ class _SearchedCityState extends State<SearchedCity> {
                             Text(
                               '$temperature',
                               style: TextStyle(
-                                  fontSize: 50, color: Color(0xff74AC43)),
+                                  fontSize: 50, color: Color(0xffF5F2DA)),
                             ),
                             Icon(Icons.circle_outlined,
-                                size: 12, color: Color(0xff74AC43)),
+                                size: 12, color: Color(0xffF5F2DA)),
                           ],
                         ),
                         Padding(
@@ -133,7 +155,7 @@ class _SearchedCityState extends State<SearchedCity> {
                             style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w300,
-                                color: Color(0xff74AC43)),
+                                color: Color(0xffF5F2DA)),
                           ),
                         )
                       ],
@@ -147,17 +169,17 @@ class _SearchedCityState extends State<SearchedCity> {
                         Text(
                           '${DateFormat('EEEE').format(today)}, ',
                           style:
-                          TextStyle(fontSize: 18, color: Color(0xff74AC43)),
+                          TextStyle(fontSize: 18, color: Color(0xffF5F2DA)),
                         ),
                         Text(
                           '${DateFormat('dd').format(today)} ',
                           style: TextStyle(
-                              fontSize: 18, color: Color(0xff74AC43)),
+                              fontSize: 18, color: Color(0xffF5F2DA)),
                         ),
                         Text(
                           '${DateFormat('MMMM').format(today)}',
                           style: TextStyle(
-                              fontSize: 18, color: Color(0xff74AC43)),
+                              fontSize: 18, color: Color(0xffF5F2DA)),
                         )
                       ],
                     ),
@@ -185,14 +207,14 @@ class _SearchedCityState extends State<SearchedCity> {
                                 child: Text(
                                   '$windSpeed',
                                   style: TextStyle(
-                                      fontSize: 18, color: Color(0xff74AC43)),
+                                      fontSize: 18, color: Color(0xffF5F2DA)),
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 21),
                                 child: Text(
                                   'Km/h',
-                                  style: TextStyle(color: Color(0xff74AC43)),
+                                  style: TextStyle(color: Color(0xffF5F2DA)),
                                 ),
                               )
                             ],
@@ -216,7 +238,7 @@ class _SearchedCityState extends State<SearchedCity> {
                                 child: Text(
                                   '$humidity',
                                   style: TextStyle(
-                                      fontSize: 18, color: Color(0xff74AC43)),
+                                      fontSize: 18, color: Color(0xffF5F2DA)),
                                 ),
                               ),
                               Padding(
@@ -224,7 +246,7 @@ class _SearchedCityState extends State<SearchedCity> {
                                 child: Text(
                                   '%',
                                   style: TextStyle(
-                                      color: Color(0xff74AC43), fontSize: 16),
+                                      color: Color(0xffF5F2DA), fontSize: 16),
                                 ),
                               )
                             ],
@@ -248,7 +270,7 @@ class _SearchedCityState extends State<SearchedCity> {
                                 child: Text(
                                   '$pressure',
                                   style: TextStyle(
-                                      fontSize: 16, color: Color(0xff74AC43)),
+                                      fontSize: 16, color: Color(0xffF5F2DA)),
                                 ),
                               ),
                               Padding(
@@ -256,7 +278,7 @@ class _SearchedCityState extends State<SearchedCity> {
                                 child: Text(
                                   'mmHg',
                                   style: TextStyle(
-                                      color: Color(0xff74AC43), fontSize: 12),
+                                      color: Color(0xffF5F2DA), fontSize: 12),
                                 ),
                               )
                             ],

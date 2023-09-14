@@ -3,11 +3,12 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class FrostedGlassBox2 extends StatelessWidget {
+class FrostedGlassBox2 extends StatelessWidget{
 
   FrostedGlassBox2({this.myChild});
 
   late dynamic myChild;
+
 
 
 
@@ -18,6 +19,7 @@ class FrostedGlassBox2 extends StatelessWidget {
         width: 80,
         height: 100,
         color: Colors.transparent,
+
         child: Stack(
           children: [
             BackdropFilter(
